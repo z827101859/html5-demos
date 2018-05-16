@@ -1,11 +1,12 @@
 const keys = document.getElementById('keys');
 const canvas = document.getElementById('canvas');
 const canvasCtx = canvas.getContext("2d");
-let canvasWidth = canvas.width;
-let canvasHeight = canvas.height;
+const canvasWidth = canvas.width;
+const canvasHeight = canvas.height;
+const pai = 60/97;
+const aElems = keys.querySelectorAll('a');
+const bufferMap = new Map();
 
-let aElems = keys.querySelectorAll('a');
-let bufferMap = new Map();
 async function getBuffers() {
     return new Promise((resolve, reject) => {
         let promises = [];
@@ -32,14 +33,14 @@ document.addEventListener('mousedown', (event) => {
     let id = aElem.getAttribute('id');
     let audioData = bufferMap.get(id);
     let audioCtx = new AudioContext();
-    let bufferSouce = audioCtx.createBufferSource();
+    let bufferSouce = audioCtx.createBufferSource();// 创建音源
     let analyser = audioCtx.createAnalyser();
     let gainNode = audioCtx.createGain();
     bufferSouce.connect(analyser);
     analyser.connect(gainNode);
     gainNode.connect(audioCtx.destination);
-    // gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-    // gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);// the same as : gainNode.gain.setTargetAtTime(1, audioCtx.currentTime + 0.01, 0.01);
+    gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);// the same as : gainNode.gain.setTargetAtTime(1, audioCtx.currentTime + 0.01, 0.01);
     let playing = true;
     bufferSouce.onended = function () {
         console.log('onended')
@@ -61,8 +62,8 @@ document.addEventListener('mousedown', (event) => {
         cancelAnimationFrame(window.drawTimeVisual);
         aElem.onmouseup = null;
         if (playing) {
-            // gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2);
-            // bufferSouce.stop(audioCtx.currentTime + 2);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2);
+            bufferSouce.stop(audioCtx.currentTime + 2);
         }
     };
 });
@@ -116,18 +117,17 @@ function play(target, time) {
                 target.dispatchEvent(mouseupEvent);
                 target.classList.remove('active');
                 resolve();
-            }, time);
+            }, time * 1000);
         } else {
             setTimeout(() => {
                 resolve();
-            }, time);
+            }, time * 1000);
         }
     })
 }
 function getById(id) {
     return document.getElementById(id);
 }
-let pai = 600;
 async function begin() {
     await play(0, pai);
     await play(0, pai);
@@ -260,5 +260,5 @@ async function begin() {
     await play(0, pai);
 }
 getBuffers().then(()=>{
-    begin();
+    // begin();
 });
