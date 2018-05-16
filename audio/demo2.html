@@ -55,60 +55,8 @@
 <body>
     <div id="keys" class="keys">
     </div>
-    <script>
-        const keys = document.getElementById('keys');
-        const voiceList = [
-            [130.81, 138.59, 146.83, 155.56, 164.81, 174.61, 185, 196, 207.65, 220, 233.08, 246.94],
-            [261.63, 277.18, 293.66, 311.13, 329.63, 349.23, 369.99, 392, 415.3, 440, 466.16, 493.88],
-            [523.25, 554.37, 587.33, 622.25, 659.26, 698.46, 739.99, 783.99, 830.61, 880, 932.33, 987.77]
-        ];
-        let html = [];
-        voiceList.forEach(item => {
-            html.push(`<span class="area">`);
-            item.forEach((em, index) => {
-                if (index == 1 || index == 3 || index == 6 || index == 8 || index == 10) {
-                    html.push(`<a href="javascript:;" class="item-key black" frequency="${em}">${index + 1}</a>`);
-                } else {
-                    html.push(`<a href="javascript:;" class="item-key" frequency="${em}">${index + 1}</a>`);
-                }
-            });
-            html.push(`</span>`);
-        });
-        keys.innerHTML = html.join('');
-        document.addEventListener('mousedown', (event) => {
-            let aElem = event.target;
-            let val = aElem.getAttribute('frequency');
-            let audioCtx = new AudioContext();
-            // 创建音调控制对象
-            let oscillator = audioCtx.createOscillator();
-            // 创建音量控制对象
-            let gainNode = audioCtx.createGain();
-            // 音调音量关联
-            oscillator.connect(gainNode);
-            // 音量和设备关联
-            gainNode.connect(audioCtx.destination);
-            // 音调类型指定为正弦波
-            oscillator.type = 'sine';
-            // 设置音调频率
-            oscillator.frequency.value = val;
-            // 先把当前音量设为0
-            gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-            // 0.01秒时间内音量从刚刚的0变成1，线性变化
-            gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);
-            // 开始播放
-            oscillator.start(audioCtx.currentTime);
-            audioCtx.playing = true;
-            aElem.onmouseup = (event) => {
-                aElem.onmouseup = null;
-                // 音量从刚刚的1变成0（指数变化），7秒后停止
-                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
-                oscillator.stop(audioCtx.currentTime + 0.8);
-                audioCtx = null;
-                oscillator = null;
-                gainNode = null;
-            };
-        });
-    </script>
+    <canvas id="canvas" width="1200px" height="400px"></canvas>
+    <script src="demo2.js"></script>
 </body>
 
 </html>

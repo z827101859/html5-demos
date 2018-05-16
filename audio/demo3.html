@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>audio demo3</title>
+    <meta charset="utf-8" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+        }
+
+        #canvas {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #acacac;
+        }
+
+        .keys {
+            width: 860px;
+            margin: 20px auto;
+            background: #f8f8f8;
+            padding: 10px;
+        }
+
+        .area {
+            float: left;
+        }
+
+        .item-key {
+            float: left;
+            width: 40px;
+            height: 160px;
+            background: #ffffff;
+            border: 1px solid #333;
+            z-index: 1;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .item-key:active {
+            box-shadow: 0px -2px 3px #333 inset;
+            background: linear-gradient(#fff, #ddd);
+        }
+
+        .item-key.active {
+            box-shadow: 0px -2px 3px #333 inset;
+            background: linear-gradient(#fff, #ddd);
+        }
+
+        .black {
+            float: left;
+            background: #333;
+            color: #ffffff;
+            height: 80px;
+            width: 20px;
+            margin-left: -11px;
+            margin-right: -11px;
+            z-index: 2;
+            position: relative;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .black:active {
+            box-shadow: 0px -2px 3px #fff inset;
+            background: linear-gradient(#ddd, #fff);
+        }
+
+        .black.active {
+            box-shadow: 0px -2px 3px #fff inset;
+            background: linear-gradient(#ddd, #fff);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="860px" height="350px"></canvas>
+    </div>
+    <div id="keys" class="keys">
+        <div class="area">
+            <a id="c3" href="javascript:;" class="item-key" frequency="130.81"></a>
+            <a id="c3m" href="javascript:;" class="item-key black" frequency="138.59"></a>
+            <a id="d3" href="javascript:;" class="item-key" frequency="146.83"></a>
+            <a id="d3m" href="javascript:;" class="item-key black" frequency="155.56"></a>
+            <a id="e3" href="javascript:;" class="item-key" frequency="164.81"></a>
+            <a id="f3" href="javascript:;" class="item-key" frequency="174.61"></a>
+            <a id="f3m" href="javascript:;" class="item-key black" frequency="185"></a>
+            <a id="g3" href="javascript:;" class="item-key" frequency="196"></a>
+            <a id="g3m" href="javascript:;" class="item-key black" frequency="207.65"></a>
+            <a id="a3" href="javascript:;" class="item-key" frequency="220"></a>
+            <a id="a3m" href="javascript:;" class="item-key black" frequency="233.08"></a>
+            <a id="b3" href="javascript:;" class="item-key" frequency="246.94"></a>
+        </div>
+        <div class="area">
+            <a id="c4" href="javascript:;" class="item-key" frequency="261.63"></a>
+            <a id="c4m" href="javascript:;" class="item-key black" frequency="277.18"></a>
+            <a id="d4" href="javascript:;" class="item-key" frequency="293.66"></a>
+            <a id="d4m" href="javascript:;" class="item-key black" frequency="311.13"></a>
+            <a id="e4" href="javascript:;" class="item-key" frequency="329.63"></a>
+            <a id="f4" href="javascript:;" class="item-key" frequency="349.23"></a>
+            <a id="f4m" href="javascript:;" class="item-key black" frequency="369.99"></a>
+            <a id="g4" href="javascript:;" class="item-key" frequency="392"></a>
+            <a id="g4m" href="javascript:;" class="item-key black" frequency="415.3"></a>
+            <a id="a4" href="javascript:;" class="item-key" frequency="440"></a>
+            <a id="a4m" href="javascript:;" class="item-key black" frequency="466.16"></a>
+            <a id="b4" href="javascript:;" class="item-key" frequency="493.88"></a>
+        </div>
+        <div class="area">
+            <a id="c5" href="javascript:;" class="item-key" frequency="523.25"></a>
+            <a id="c5m" href="javascript:;" class="item-key black" frequency="554.37"></a>
+            <a id="d5" href="javascript:;" class="item-key" frequency="587.33"></a>
+            <a id="d5m" href="javascript:;" class="item-key black" frequency="622.25"></a>
+            <a id="e5" href="javascript:;" class="item-key" frequency="659.26"></a>
+            <a id="f5" href="javascript:;" class="item-key" frequency="698.46"></a>
+            <a id="f5m" href="javascript:;" class="item-key black" frequency="739.99"></a>
+            <a id="g5" href="javascript:;" class="item-key" frequency="783.99"></a>
+            <a id="g5m" href="javascript:;" class="item-key black" frequency="830.61"></a>
+            <a id="a5" href="javascript:;" class="item-key" frequency="880"></a>
+            <a id="a5m" href="javascript:;" class="item-key black" frequency="932.33"></a>
+            <a id="b5" href="javascript:;" class="item-key" frequency="987.77"></a>
+        </div>
+    </div>
+    <script src="demo3.js"></script>
+</body>
+
+</html>
