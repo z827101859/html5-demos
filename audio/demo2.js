@@ -3,8 +3,9 @@ const canvas = document.getElementById('canvas');
 const canvasCtx = canvas.getContext("2d");
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
-const pai = 60/97;
+const pai = 60 / 97;
 const aElems = keys.querySelectorAll('a');
+const playBtn = getById('play');
 const bufferMap = new Map();
 
 document.addEventListener('mousedown', (event) => {
@@ -38,12 +39,11 @@ document.addEventListener('mousedown', (event) => {
         cancelAnimationFrame(window.drawTimeVisual);
         aElem.onmouseup = null;
         if (playing) {
-            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 2);
-            oscillator.stop(audioCtx.currentTime + 2);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.5);
+            oscillator.stop(audioCtx.currentTime + 1.5);
         }
     };
 });
-
 function drawTimeGraph(analyser) {
     let bufferLength = analyser.fftSize;
     let dataArray = new Float32Array(bufferLength);
@@ -72,8 +72,7 @@ function drawTimeGraph(analyser) {
     };
     draw();
 }
-
-function play(target, time) {
+function pressKey(target, time) {
     return new Promise((resolve, reject) => {
         if (target) {
             let mousedownEvent = new CustomEvent('mousedown', {
@@ -105,135 +104,139 @@ function play(target, time) {
 function getById(id) {
     return document.getElementById(id);
 }
-async function begin() {
-    await play(0, pai);
-    await play(0, pai);
-    await play(0, pai / 2);
-    await play(getById('c4'), pai / 2);
-    await play(getById('c4'), pai / 2);
-    await play(getById('d4'), pai / 2);
+async function musicZdqc() {
+    await pressKey(0, pai);
+    await pressKey(0, pai);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
 
-    await play(getById('e4'), pai);
-    await play(getById('e4'), pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai / 2);
+    await pressKey(getById('e4'), pai);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2);
 
-    await play(getById('b3'), pai);
-    await play(getById('a4'), pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(getById('a4'), pai / 2);
-    await play(getById('b4'), pai / 2);
+    await pressKey(getById('b3'), pai);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('b4'), pai / 2);
 
-    await play(getById('c5'), pai);
-    await play(getById('e4'), pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('c5'), pai / 2);
-    await play(getById('b4'), pai / 2);
-    await play(getById('c5'), pai / 2);
+    await pressKey(getById('c5'), pai);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('b4'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
 
-    await play(getById('b4'), pai);
-    await play(getById('e4'), pai / 2);
-    await play(getById('g4'), pai * 3 / 2);
-    await play(getById('g4'), pai / 2);
-    await play(getById('a4'), pai / 2);
+    await pressKey(getById('b4'), pai);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('g4'), pai * 3 / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('a4'), pai / 2);
 
-    await play(getById('c5'), pai / 2);
-    await play(getById('a4'), pai);
-    await play(getById('a4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('a4'), pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(getById('f4'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('a4'), pai);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('f4'), pai / 2);
 
-    await play(getById('g4'), pai / 2);
-    await play(getById('e4'), pai);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai);
-    await play(getById('c4'), pai / 2);
-    await play(getById('a3'), pai / 4);
-    await play(getById('c4'), pai / 4);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('e4'), pai);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('a3'), pai / 4);
+    await pressKey(getById('c4'), pai / 4);
 
-    await play(getById('e4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('g4'), pai);
-    await play(getById('c4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('g4'), pai);
+    await pressKey(getById('c4'), pai / 2);
 
-    await play(getById('d4'), pai);
-    await play(getById('d4'), pai);
-    await play(0, pai / 2);
-    await play(getById('c4'), pai / 2);
-    await play(getById('c4'), pai / 2);
-    await play(getById('d4'), pai / 2);
+    await pressKey(getById('d4'), pai);
+    await pressKey(getById('d4'), pai);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
 
-    await play(getById('e4'), pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2);
 
-    await play(getById('g4'), pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(getById('e4'), pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(getById('a4'), pai / 2);
-    await play(getById('b4'), pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('b4'), pai / 2);
 
-    await play(getById('c5'), pai / 2);
-    await play(getById('c5'), pai / 2);
-    await play(getById('c5'), pai / 2);
-    await play(getById('c5'), pai / 2);
-    await play(getById('c5'), pai / 2);
-    await play(getById('b4'), pai / 2);
-    await play(getById('a4'), pai / 2);
-    await play(getById('b4'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('b4'), pai / 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('b4'), pai / 2);
 
-    await play(getById('a4'), pai / 2);
-    await play(getById('e4'), pai / 2 * 2);
-    await play(getById('g4'), pai / 2);
-    await play(0, pai);
-    await play(getById('g4'), pai / 2);
-    await play(getById('a4'), pai / 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2 * 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(0, pai);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('a4'), pai / 2);
 
-    await play(getById('c5'), pai / 2);
-    await play(getById('a4'), pai / 2 * 2);
-    await play(getById('a4'), pai / 2);
-    await play(0, pai / 2);
-    await play(getById('a4'), pai / 2);
-    await play(getById('g4'), pai / 2);
-    await play(getById('e4'), pai / 2)
+    await pressKey(getById('c5'), pai / 2);
+    await pressKey(getById('a4'), pai / 2 * 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('a4'), pai / 2);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2)
 
-    await play(getById('g4'), pai / 2);
-    await play(getById('e4'), pai / 2 * 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai);
-    await play(0, pai / 2);
-    await play(getById('a3'), pai / 4);
-    await play(getById('c4'), pai / 4);
+    await pressKey(getById('g4'), pai / 2);
+    await pressKey(getById('e4'), pai / 2 * 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai);
+    await pressKey(0, pai / 2);
+    await pressKey(getById('a3'), pai / 4);
+    await pressKey(getById('c4'), pai / 4);
 
-    await play(getById('e4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai / 2);
-    await play(getById('d4'), pai / 2);
-    await play(getById('c4'), pai / 2 * 2);
-    await play(getById('a3'), pai / 2);
+    await pressKey(getById('e4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2);
+    await pressKey(getById('d4'), pai / 2);
+    await pressKey(getById('c4'), pai / 2 * 2);
+    await pressKey(getById('a3'), pai / 2);
 
-    await play(getById('c4'), pai * 2);
-    await play(0, pai);
-    await play(0, pai);
+    await pressKey(getById('c4'), pai * 2);
+    await pressKey(0, pai);
+    await pressKey(0, pai);
 }
-// begin();
+playBtn.addEventListener('click', async function () {
+    playBtn.disabled = true;
+    await musicZdqc();
+    playBtn.disabled = false;
+});
