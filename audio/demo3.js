@@ -45,7 +45,7 @@ document.addEventListener('mousedown', (event) => {
     gainNode.gain.linearRampToValueAtTime(1, audioCtx.currentTime + 0.01);// the same as : gainNode.gain.setTargetAtTime(1, audioCtx.currentTime + 0.01, 0.01);
     let playing = true;
     bufferSouce.onended = function () {
-        console.log('onended')
+        console.log('onended');
         playing = false;
         audioCtx.close();
         audioCtx = null;

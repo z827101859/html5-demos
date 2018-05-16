@@ -25,7 +25,7 @@ document.addEventListener('mousedown', (event) => {
     gainNode.gain.setTargetAtTime(1, audioCtx.currentTime + 0.01, 0.01);
     let playing = true;
     oscillator.onended = function () {
-        console.log('onended')
+        console.log('onended');
         playing = false;
         audioCtx.close();
         audioCtx = null;
