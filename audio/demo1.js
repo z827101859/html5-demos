@@ -19,7 +19,7 @@ loadBtn.onclick = function () {
         audioCtx = new AudioContext();
         bufferSouce = audioCtx.createBufferSource();
         analyser = audioCtx.createAnalyser();
-        analyser.fftSize = 256;
+        analyser.fftSize = 1024;
         bufferSouce.connect(analyser);
         analyser.connect(audioCtx.destination);
         audioCtx.decodeAudioData(request.response, function (buffer) {
@@ -41,7 +41,7 @@ loadBtn.onclick = function () {
     request.send();
 }
 stopBtn.onclick = function () {
-    bufferSouce &&　bufferSouce.stop(0);
+    bufferSouce && bufferSouce.stop(0);
 }
 resumeBtn.onclick = function () {
     if (audioCtx && audioCtx.state === 'suspended') {
@@ -64,16 +64,17 @@ function drawFrequencyGraph(analyser) {
     let width = canvas.width;
     let height = canvas.height;
     let bufferLengthAlt = analyser.frequencyBinCount;
-    let dataArrayAlt = new Uint8Array(bufferLengthAlt);
+    // let dataArrayAlt = new Uint8Array(bufferLengthAlt);
     let dataArrayAlt2 = new Float32Array(bufferLengthAlt);
-    let barWidth = Math.floor((width / bufferLengthAlt));
+    let barWidth = width / bufferLengthAlt;
+    console.log(width, bufferLengthAlt, barWidth);
     canvasCtx.clearRect(0, 0, width, height);
     let drawAlt = function () {
         drawFrequencyVisual = requestAnimationFrame(drawAlt);
         // https://stackoverflow.com/questions/24083349/understanding-getbytetimedomaindata-and-getbytefrequencydata-in-web-audio
         // https://stackoverflow.com/questions/44546024/why-are-the-values-returned-from-getfloatfrequencydata-negative
         // https://stackoverflow.com/questions/14169317/interpreting-web-audio-api-fft-results
-        analyser.getByteFrequencyData(dataArrayAlt);
+        // analyser.getByteFrequencyData(dataArrayAlt);
         analyser.getFloatFrequencyData(dataArrayAlt2);//频率数据，返回的是db为单位的声音
         // console.log(dataArrayAlt);
         // console.log(dataArrayAlt2);
@@ -94,12 +95,12 @@ function drawTimeGraph(analyser) {
     let width = canvas2.width;
     let height = canvas2.height;
     let bufferLength = analyser.fftSize;
-    let dataArray = new Uint8Array(bufferLength);
+    // let dataArray = new Uint8Array(bufferLength);
     let dataArray2 = new Float32Array(bufferLength);
     canvasCtx2.clearRect(0, 0, width, height);
     let draw = function () {
         window.drawTimeVisual = requestAnimationFrame(draw);
-        analyser.getByteTimeDomainData(dataArray);
+        // analyser.getByteTimeDomainData(dataArray);
         analyser.getFloatTimeDomainData(dataArray2);//波形数据
         // console.log(dataArray);
         // console.log(dataArray2);
